@@ -76,14 +76,15 @@ def search_food(query):
 # 음식 리스트 출력(l: 음식 리스트)
 def food_lst(l):
     for i, n in enumerate(l):  # 리스트 반복
+        if i > 25: break # 음식 리스트가 과도하게 길면 뒷부분 자르기(터미널 잘림 방지) 
         print(f"{i+1}: {n['식품명']}")  # 인덱스 및 음식명 출력
 
 # 음식 선택
 def select_food(lst):
     food_lst(lst)  # 음식 리스트 출력
     div_line(1)
-    #ans = int(input("번호 입력 -> "))  # 사용자 입력
-    ans = 1 
+    ans = int(input("번호 입력 -> "))  # 사용자 입력
+    #ans = 1 
     try:
         return lst[ans - 1]  # 선택 음식 반환
     except: # 예외 처리
@@ -216,6 +217,9 @@ def main():
             
     pref = prefer(foods)  # 취향 추출
     best_pref = [i[0] for i in pref[:len(pref)//10 + 1]]  # 상위 10% 취향 저장
+    div_line(3)
+    print("사용자 선호 음식: ")
+    for bp in best_pref: print(bp)
     
     div_line(3)
     age = int(input("나이 입력 -> "))  # 사용자 나이 입력
